@@ -83,17 +83,17 @@ function App() {
         {/* phía admin */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route
-            path="/dashboard"
+            path="/admin"
             element={
               <Dashboard products={products} onDel={handleDeleteProduct} />
             }
           />
           <Route
-            path="admin/add"
+            path="/admin/add"
             element={<ProductAdd onAdd={handleAddProduct} />}
           />
           <Route
-            path="admin/edit/:id"
+            path="/admin/edit/:id"
             element={<ProductEdit onEdit={handleEditProduct} />}
           />
         </Route>
