@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
-
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { TProduct } from "../../../interfaces/TProducts";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { TProduct } from "../../interfaces/TProducts";
+import { getProduct } from "../../services/product";
+
+
 
 type Props = {
-  onAdd: (product: TProduct) => void;
+  onEdit: (product: TProduct) => void;
 };
 
 const productSchema = Joi.object({
@@ -14,7 +18,10 @@ const productSchema = Joi.object({
   description: Joi.string().allow(null, ""),
 });
 
-const ProductAdd = ({ onAdd }: Props) => {
+const ProductEdit = ({ onEdit }: Props) => {
+  const { id } = useParams();
+  const [product, setProduct] = useState<TProduct | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -23,12 +30,19 @@ const ProductAdd = ({ onAdd }: Props) => {
     resolver: joiResolver(productSchema),
   });
   const onSubmit = (product: TProduct) => {
-    onAdd(product);
+    onEdit({ ...product, id });
   };
+
+  useEffect(() => {
+    (async () => {
+      const data = await getProduct(`/${id}`);
+      setProduct(data);
+    })();
+  }, []);
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Product Add</h1>
+        <h1>Product Edit</h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -40,6 +54,7 @@ const ProductAdd = ({ onAdd }: Props) => {
               minLength: 3,
               maxLength: 255,
             })}
+            defaultValue={product?.title}
           />
           {errors.title && (
             <div className="text-danger">{errors.title.message}</div>
@@ -55,6 +70,7 @@ const ProductAdd = ({ onAdd }: Props) => {
               required: true,
               min: 0,
             })}
+            defaultValue={product?.price as number}
           />
           {errors.price && (
             <div className="text-danger">{errors.price.message}</div>
@@ -67,6 +83,7 @@ const ProductAdd = ({ onAdd }: Props) => {
             id="description"
             className="form-control"
             {...register("description")}
+            defaultValue={product?.description}
           />
         </div>
         <button className="btn btn-primary w-100">Submit</button>
@@ -75,4 +92,4 @@ const ProductAdd = ({ onAdd }: Props) => {
   );
 };
 
-export default ProductAdd;
+export default ProductEdit;

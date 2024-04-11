@@ -1,9 +1,11 @@
-import Header from '../Header';
-import WhoWeAre from '../contentBlocks/page2WhoWeAre';
-import Categories from '../contentBlocks/page2Categories';
-import DontMiss from '../contentBlocks/DontMiss';
-import Footer from '../Footer';
-import SyNews from '../contentBlocks/SyNews';
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import DontMiss from "../components/contentBlocks/DontMiss";
+import SyNews from "../components/contentBlocks/SyNews";
+import WhoWeAre from "../components/contentBlocks/page2WhoWeAre";
+import Categories from "../components/contentBlocks/page1Categories";
+
+
 
 export const AboutUs = () => { // page 2
 
@@ -37,7 +39,7 @@ export const AboutUs = () => { // page 2
         <section>
             <Header />
             <WhoWeAre />
-            <Categories />
+            <Categories/>
             <SyNews news={news} />
             <DontMiss />
             <Footer />

@@ -4,12 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 /* Pages */
-import { HomePage } from "./components/pages/01_HomePage";
-import { AboutUs } from "./components/pages/02_AboutUs";
-import { Projects } from "./components/pages/03_Projects";
-import { ContactUs } from "./components/pages/05_ContactUs";
-import { LatestNews } from "./components/pages/06_LatestNews";
-import LoginPage from "./components/pages/LoginPage";
+
 import {
   createProduct,
   getProducts,
@@ -17,10 +12,17 @@ import {
   updateProduct,
 } from "./services/product";
 import { TProduct } from "./interfaces/TProducts";
+import ProductDetail from "./components/ProductDe/ProductDetail";
+import { HomePage } from "./pages/01_HomePage";
+import { AboutUs } from "./pages/02_AboutUs";
+import { ContactUs } from "./pages/05_ContactUs";
+import { LatestNews } from "./pages/06_LatestNews";
+import LoginPage from "./pages/LoginPage";
 import AdminLayout from "./components/elements/AdminLayout";
-import Dashboard from "./components/pages/admin/Dashboard";
-import ProductAdd from "./components/pages/admin/ProductAdd";
-import ProductEdit from "./components/pages/admin/ProductEdit";
+import Dashboard from "./pages/admin/Dashboard";
+import ProductAdd from "./pages/admin/ProductAdd";
+import ProductEdit from "./pages/admin/ProductEdit";
+import Projects from "./pages/03_Projects";
 
 function App() {
   const [products, setProducts] = useState<TProduct[]>([]);
@@ -75,7 +77,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/projects" element={<Projects />} />
+        {/* <Route path="/projects" element={<Projects />} /> */}
+
+        <Route path="/projects" element={<Projects products={products} />}>
+          <Route index element={<Projects products={products} />} />
+          <Route path="shop/:id" element={<ProductDetail />} />{" "}
+          {/* Sửa đổi đường dẫn tương đối */}
+        </Route>
+
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/news" element={<LatestNews />} />
         <Route path="/login" element={<LoginPage />} />

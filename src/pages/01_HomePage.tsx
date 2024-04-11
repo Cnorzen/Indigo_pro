@@ -1,11 +1,12 @@
-import Header from "../Header";
-import WeHelpSurface from "../contentBlocks/page1WeHelpSurface";
-import Page1Categories from "../contentBlocks/page1Categories";
-import TeamMember from "../contentBlocks/page1MeetOur";
-import SuccessStory from "../contentBlocks/page1SuccessStory";
-import DontMiss from "../contentBlocks/DontMiss";
-import Footer from "../Footer/index";
-import SyNews from "../contentBlocks/SyNews";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import DontMiss from "../components/contentBlocks/DontMiss";
+import SyNews from "../components/contentBlocks/SyNews";
+import Page1Categories from "../components/contentBlocks/page1Categories";
+import TeamMember from "../components/contentBlocks/page1MeetOur";
+import SuccessStory from "../components/contentBlocks/page1SuccessStory";
+import WeHelpSurface from "../components/contentBlocks/page1WeHelpSurface";
+
 
 export const HomePage = () => {
   // page 1

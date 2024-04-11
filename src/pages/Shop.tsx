@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TProduct } from "../../interfaces/TProducts";
+import { TProduct } from "../interfaces/TProducts";
 
 type Props = {
   products: TProduct[];

@@ -1,9 +1,9 @@
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import DontMiss from "../components/contentBlocks/DontMiss";
+import SyNews from "../components/contentBlocks/SyNews";
 
-import Header from '../Header';
-import DontMiss from '../contentBlocks/DontMiss';
-import Footer from '../Footer';
 
-import SyNews from '../contentBlocks/SyNews';
 
 export const LatestNews = () => { // page 6
 
